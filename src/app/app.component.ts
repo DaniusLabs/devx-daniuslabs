@@ -1,4 +1,4 @@
-import { NgModule, Component, enableProdMode } from "@angular/core";
+import { NgModule, Component, enableProdMode, OnInit } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { DxDataGridModule } from "devextreme-angular";
@@ -11,15 +11,20 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
   styleUrls: ["./app.component.css"],
   providers: [Service]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   employees: Employee[];
   states: State[];
 
   constructor(private service: Service) {
-    this.employees = service.getEmployees();
+    
     this.states = service.getStates();
   }
 
+  ngOnInit() {
+     this.service.getEmployees().subscribe(x => {
+      this.employees = x;
+     }) ;
+  }
   moreTags() {
     alert("more tags");
   }

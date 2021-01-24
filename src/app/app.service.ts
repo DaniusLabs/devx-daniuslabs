@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export class Employee {
     ID: number;
@@ -338,7 +340,7 @@ export class Service {
     }
 
     getEmployees(): Observable<Employee[]> {
-        return Ofemployees)()
+        return of(employees)
     }
     getStates(): State[] {
         return states;
